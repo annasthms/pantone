@@ -8,8 +8,11 @@
   * {
     font-family: 'Karla', sans-serif;
   }
+  body {
+    padding: 3em;
+  }
   div#input, div#output {
-    margin: 4em;
+    margin: 4em 4em 0;
   }
   input, button {
     padding: 0.5em;
@@ -34,7 +37,7 @@
   div#output div {
     display: table-row;
   }
-  div#output div:not(:last-child) span {
+  div#output div:not(:last-child):not(:nth-last-child(2)) span {
     border-bottom: 1px solid #aaa;
   }
   div#output span {
@@ -44,6 +47,12 @@
   div#output .title {
     font-weight: bold;
     padding-right: 1em;
+  }
+  div#swatch {
+    margin-top: 1em;
+    height: 55px;
+    width: 100%;
+    display: block!important;
   }
   </style>
 </head>
@@ -56,6 +65,7 @@
     <div id="name"><span class="title">name: </span><span id="name_output"></span></div>
     <div id="number"><span class="title">number: </span><span id="number_output"></span></div>
     <div id="exact"><span class="title">exact match: </span><span id="exact_output"></span></div>
+    <div id="swatch"></div>
   </div>
   <script src="pantone ntc.js" charset="utf-8"></script>
   <script type="text/javascript">
@@ -63,6 +73,7 @@
   const no = document.getElementById("name_output");
   const nu = document.getElementById("number_output");
   const eo = document.getElementById("exact_output");
+  const s = document.getElementById("swatch");
   function pantone() {
     if (document.getElementsByTagName("input")[0].value) {
       var n_match  = ntc.name(document.getElementsByTagName("input")[0].value);
@@ -70,7 +81,8 @@
       no.innerText = n_match[1]; // This is the text string for the name of the match
       nu.innerText = n_match[2]; // True if exact color match, False if close-match
       eo.innerText = n_match[3]; // True if exact color match, False if close-match
-      output.style.display = 'block';
+      s.style.backgroundColor = n_match[0];
+      output.style.display = 'inline-block';
     }
   }
   </script>
