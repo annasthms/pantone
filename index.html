@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>pantone ntc</title>
+  <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+  <style>
+  * {
+    font-family: 'Karla', sans-serif;
+  }
+  div#input, div#output {
+    margin: 4em;
+  }
+  input, button {
+    padding: 0.5em;
+  }
+  input {
+    outline-color: #ff6f61;
+    border: 1px solid #bbb;
+  }
+  button {
+    margin-left: 1em;
+    background: transparent;
+    border: 1px solid #ff6f61;
+    outline: none;
+  }
+  button:focus {
+    background: #ff6f61;
+    background: rgba(255, 111, 97, 0.5);
+  }
+  button:active {
+    border-color: #222;
+  }
+  div#output div {
+    display: table-row;
+  }
+  div#output div:not(:last-child) span {
+    border-bottom: 1px solid #aaa;
+  }
+  div#output span {
+    display: table-cell;
+    padding: 0.35em 0;
+  }
+  div#output .title {
+    font-weight: bold;
+    padding-right: 1em;
+  }
+  </style>
+</head>
+<body>
+  <div id="input">
+    <input type="text" placeholder="enter hex" onchange="pantone()"><button onclick="pantone()">pantone it!</button>
+  </div>
+  <div id="output" style="display:none">
+    <div id="hex"><span class="title">hex: </span><span id="hex_output"></span></div>
+    <div id="name"><span class="title">name: </span><span id="name_output"></span></div>
+    <div id="number"><span class="title">number: </span><span id="number_output"></span></div>
+    <div id="exact"><span class="title">exact match: </span><span id="exact_output"></span></div>
+  </div>
+  <script src="pantone ntc.js" charset="utf-8"></script>
+  <script type="text/javascript">
+  const ho = document.getElementById("hex_output");
+  const no = document.getElementById("name_output");
+  const nu = document.getElementById("number_output");
+  const eo = document.getElementById("exact_output");
+  function pantone() {
+    if (document.getElementsByTagName("input")[0].value) {
+      var n_match  = ntc.name(document.getElementsByTagName("input")[0].value);
+      ho.innerText = n_match[0]; // This is the RGB value of the closest matching color
+      no.innerText = n_match[1]; // This is the text string for the name of the match
+      nu.innerText = n_match[2]; // True if exact color match, False if close-match
+      eo.innerText = n_match[3]; // True if exact color match, False if close-match
+      output.style.display = 'block';
+    }
+  }
+  </script>
+</body>
+</html>
