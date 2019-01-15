@@ -1,6 +1,8 @@
 # Modified ntc.js for Pantone Colors
 This is a modified version of [Chirag Mehta's ntc js (Name that Color JavaScript)](http://chir.ag/projects/ntc/). This modified version finds the closest Pantone swatch for a given HEX color. The Pantone colors were taken from [this Github repository](https://github.com/Margaret2/pantone-colors).
 
+Play with it [here](https://annasthms.github.io/pantone/index.html).
+
 ## Sample HTML Code
 ```html
 <script type="text/javascript" src="pantone ntc.js"></script>
